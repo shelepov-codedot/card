@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rebeccapurple;
+    color: #fff;
+}
+
+label {
+    perspective: 800px;
+}
+
+input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.page-card {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: 100vh;
+    margin: auto;
+}
+
+.card {
+    margin: 20px;
+    width: 350px;
+    height: 250px;
+    background-color: #000000;
+    border-radius: 5%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.card-yellow {
+    background-color: yellow;
+}
+
+.card-red {
+    background-color: red;
+}
+
+.card-white {
+    background-color: #fff;
+    color: #000000;
+}
+
+.card div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-front {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotateX(0deg);
+    transform: translateZ(100px)
+}
+
+.card-back {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotateX(180deg);
+    transform: translateZ(-100px);
+}
+
+.card-back p {
+    transform: rotateX(180deg);
+}
+
+input:checked+.card {
+    transform: rotateX(180deg);
+}
