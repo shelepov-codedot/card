@@ -1,94 +1,141 @@
 *,
-*::before,
-*::after {
-    box-sizing: border-box;
+*::after,
+*::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
-    background-color: rebeccapurple;
-    color: #fff;
+    --background-color: hsl(180, 20%, 90%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    padding: 2rem;
+    color: hsla(0, 0%, 0%, .6);
+    background: var(--background-color);
+    text-align: center;
 }
 
-label {
-    perspective: 800px;
+h1 {
+    font-size: 3.2rem;
+    padding-top: 2rem;
 }
 
-input {
-    position: absolute;
-    visibility: hidden;
+h1+p {
+    font-size: 1.8rem;
+    padding: 2rem 0 3rem;
 }
 
-.page-card {
+.main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
     align-items: center;
-    max-width: 100%;
-    height: 100vh;
-    margin: auto;
 }
 
-.card-item {
-    margin: 20px;
-    width: 350px;
-    height: 250px;
-    background-color: #000000;
-    border-radius: 5%;
-    position: relative;
+.wrap {
+    margin: 2rem;
     transform-style: preserve-3d;
-    transition: transform 1s;
+    transform: perspective(100rem);
     cursor: pointer;
 }
 
-.card-yellow {
-    background-color: yellow;
+.container {
+    --rX: 0;
+    --rY: 0;
+    --bX: 50%;
+    --bY: 80%;
+    width: 30rem;
+    height: 36rem;
+    border: 1px solid var(--background-color);
+    border-radius: 1.6rem;
+    padding: 4rem;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
+    background: linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, .1)), url("../img/1.jpg") no-repeat;
+    background-position: var(--bX) var(--bY);
+    background-size: 60rem auto;
+    box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
+    transition: transform .3s .3s;
 }
 
-.card-red {
-    background-color: red;
-}
-
-.card-white {
-    background-color: #fff;
-    color: #000000;
-}
-
-.card-item div {
+.container div {
     position: absolute;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
 }
 
-.card-front {
-    font-size: 32px;
-    line-height: 42px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transform: rotateX(0deg);
-    transform: translateZ(100px)
+.container::before,
+.container::after {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #fff;
+    position: absolute;
+    opacity: .3;
+    transition: .1s;
+}
+
+.container::before {
+    top: 2rem;
+    right: 2rem;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.container::after {
+    bottom: 2rem;
+    left: 2rem;
+    border-top-width: 0;
+    border-right-width: 0;
+}
+
+.container--active {
+    transition: none;
+}
+
+.container--2 {
+    filter: hue-rotate(80deg) saturate(140%);
+}
+
+.container--3 {
+    filter: hue-rotate(160deg) saturate(140%);
+}
+
+.container p {
+    color: hsla(0, 0%, 100%, .6);
+    font-size: 2.2rem;
+}
+
+.wrap:hover .container::before,
+.wrap:hover .container::after {
+    width: calc(100% - 4rem);
+    height: calc(100% - 4rem);
+}
+
+.abs-site-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: hsla(0, 0%, 0%, .6);
+    font-size: 1.6rem;
 }
 
 .card-back {
-    font-size: 32px;
-    line-height: 42px;
-    font-weight: bold;
-    text-transform: uppercase;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     transform: rotateX(180deg);
     transform: translateZ(-100px);
 }
 
 .card-back p {
-    transform: rotateX(180deg);
-}
-
-input:checked+.card {
     transform: rotateX(180deg);
 }
 
